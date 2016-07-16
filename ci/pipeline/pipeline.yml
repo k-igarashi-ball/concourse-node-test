@@ -3,7 +3,7 @@ resources:
   - name: web-service
     type: git
     source:
-      uri: git@github.com:kbball/concourse-node-test.git
+      uri: https://github.com/kbball/concourse-node-test.git
       branch: master
 jobs:
   - name: build
