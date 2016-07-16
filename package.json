@@ -1,0 +1,22 @@
+{
+  "name": "concourse-node-test",
+  "version": "1.0.0",
+  "description": "Simple Node Application with Concourse CI Pipeline",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kbball/concourse-node-test.git"
+  },
+  "keywords": [
+    "concourse"
+  ],
+  "author": "Kevin Ball <kevin@kevinball.net>",
+  "license": "SEE LICENSE IN LICENSE.MD",
+  "bugs": {
+    "url": "https://github.com/kbball/concourse-node-test/issues"
+  },
+  "homepage": "https://github.com/kbball/concourse-node-test#readme"
+}
