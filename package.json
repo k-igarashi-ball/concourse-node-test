@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Simple Node Application with Concourse CI Pipeline",
   "main": "src/server.js",
+  "engines":{
+    "node" : "6"
+  },
   "scripts": {
     "test": "mocha -R tap src/**/__tests__/*-test.js",
     "test:watch": "mocha -R spec -w src/**/*.js src/**/__tests__/*-test.js"
