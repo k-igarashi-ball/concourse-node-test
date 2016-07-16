@@ -1,14 +1,43 @@
 ---
 resources:
-  - name: web-service
+  - name: web-service-develop
+    type: git
+    source:
+      uri: https://github.com/kbball/concourse-node-test.git
+      branch: develop
+  - name: web-service-pr
     type: git
     source:
       uri: https://github.com/kbball/concourse-node-test.git
       branch: master
+  - name: deploy-dev
+    type: cf
+    source:
+      api: {{cf-api}}
+      username: {{cf-username}}
+      password: {{cf-password}}
+      organization: {{cf-organization}}
+      space: {{cf-space-dev}}
+  - name: deploy-pr
+    type: cf
+    source:
+      api: {{cf-api}}
+      username: {{cf-username}}
+      password: {{cf-password}}
+      organization: {{cf-organization}}
+      space: {{cf-space-pr}}
 jobs:
-  - name: build
+  - name: build-dev
     plan:
       - get: web-service
         trigger: true
+      - put: deploy-dev
+      - task: build
+        file: web-service/ci/jobs/build.yml
+  - name: build-master
+    plan:
+      - get: web-service
+        trigger: true
+      - put: deploy-pr
       - task: build
         file: web-service/ci/jobs/build.yml
