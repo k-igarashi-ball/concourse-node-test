@@ -1,0 +1,14 @@
+---
+resources:
+  - name: web-service
+    type: git
+    source:
+      uri: git@github.com:kbball/concourse-node-test.git
+      branch: master
+jobs:
+  - name: build
+    plan:
+      - get: web-service
+        trigger: true
+      - task: build
+        file: web-service/ci/jobs/build.yml
