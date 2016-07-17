@@ -31,6 +31,10 @@ jobs:
     plan:
       - get: web-service
         trigger: true
-      - put: deploy-dev
       - task: build
         file: web-service/ci/jobs/build.yml
+      - put: deploy-dev
+        params:
+          manifest: web-service/manifest.yml
+          path: web-service
+
