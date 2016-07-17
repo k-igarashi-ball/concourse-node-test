@@ -4,7 +4,7 @@ resources:
     type: git
     source:
       uri: https://github.com/kbball/concourse-node-test.git
-      branch: develop
+      branch: master
   - name: deploy
     type: cf
     source:
@@ -12,7 +12,7 @@ resources:
       username: {{cf-username}}
       password: {{cf-password}}
       organization: {{cf-organization}}
-      space: {{cf-space-dev}}
+      space: {{cf-space-pr}}
 jobs:
   - name: build-deploy
     plan:
