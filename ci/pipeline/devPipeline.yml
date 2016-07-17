@@ -1,0 +1,27 @@
+---
+resources:
+  - name: web-service
+    type: git
+    source:
+      uri: https://github.com/kbball/concourse-node-test.git
+      branch: develop
+  - name: deploy
+    type: cf
+    source:
+      api: {{cf-api}}
+      username: {{cf-username}}
+      password: {{cf-password}}
+      organization: {{cf-organization}}
+      space: {{cf-space-dev}}
+jobs:
+  - name: build-deploy
+    plan:
+      - get: web-service
+        trigger: true
+      - task: build
+        file: web-service/ci/jobs/build.yml
+      - put: deploy
+        params:
+          manifest: web-service/manifest.yml
+          path: web-service
+
